@@ -26,3 +26,9 @@
   };
   greet();
 ```
+### By-Value
+* When a variable is declared and defined, that variable is saved to memory pointing to the defined value.  If a separate variable is declared and set equal to the initial variable, then a copy of the initial variable is created and the second variable points at the copied value.  If the initial variables value is redefined, the second variable's value does not change because it is still pointing at the copy of the original value.  
+### By-Reference
+* A variable that is set equal to a pre-existing object does not cause a copy of that object to be made and saved to memory, instead the variable referencing the object just continually points at the same key/value pairs.  If the object is mutated in any way the newly created variable references those changes because it is still pointed at the original object.  
+### **this**
+* `this` points to the window when a function is declared on the global level.  `this` points to the object in which it is called if invoked within an object.  `this` makes it easier to grab hold of a property within the object where `this` is called.  If `this` is being called within a method of an object deeper than the 1st level of the object, then `this` refers to the window object, not the object.  In order to effectively use `this` deep within an object, a variable must be declared and set equal to `this`.  That variable now holds a copy of the object, not the global object.    
