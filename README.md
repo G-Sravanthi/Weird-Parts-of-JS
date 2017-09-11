@@ -11,18 +11,18 @@
 ### First Class Functions
 * Functions act differently in the JS Engine compared to other languages, because everything you can do with other types (string, number, boolean, etc.) you can do with functions.  Functions can be assigned to variables, passed around, and created on the fly.  Functions are objects in JS.  It is a special type of object with 2 special properties that regular objects do not have.  The name property, that is optional, and the code property that holds the code to be preformed when the function is invoked.  
 ### Function Expression
-* A variable that holds an anonymous function.  A function expression cannot be invoked before it is declared because the variable is hoisted as `undefined`.   
-```JavaScript
-  function greet() {
-    console.log('hello!');
-  };
-  greet();
-```
-### Function Statement
-* A function with a declared name.  A function statement is hoisted with invokable code, allowing the function to be called before it is declared within the code resulting in a value other than `undefined`.
+* A variable that holds an anonymous function.  A function expression cannot be invoked before it is declared because the variable is hoisted as `undefined`.
 ```JavaScript
   var greeting = function() {
     console.log('hi!');
   };
   greeting();
 ```    
+### Function Statement
+* A function with a declared name.  A function statement is hoisted with invokable code, allowing the function to be called before it is declared within the code resulting in a value other than `undefined`.
+```JavaScript
+  function greet() {
+    console.log('hello!');
+  };
+  greet();
+```
