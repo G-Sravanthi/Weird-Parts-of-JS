@@ -34,7 +34,7 @@
 * Basic `this`
 
    `this` is used to hold the value of a single object.  If `this` is used within a function, then `this` is being used to access the methods or properties of the object that called the function. `this` can only reference the methods and properties within the single object where invoked.   
-   
+
 ```JavaScript
   var friends = {
     best: 'George',
@@ -46,4 +46,22 @@
   };
   friends.myFriends();
 ```       
-* Callback and `this`
+* Callbacks and `this`
+
+   When an object's method is passed to a separate object as a callback, for instance on a click event, if `this` is used to reference a property within the object method being passed, no longer does `this` refer to the correct property.  If `this` is used within a method for a callback function, then `this` now refers the the properties of the invoking function, for instance the button click.
+
+```JavaScript
+var allFriends = {
+  friends: [
+    {name: 'George'},
+    {name: 'Larry'},
+    {name: 'Sara'}
+  ],
+  myFriends: function() {
+    var rando = (Math.floor(Math.random()*3) + 1);
+    console.log("One of my friends is " + this.friends[rando].name + ".");
+  }
+};
+$(button).click(allFriends.myFriends());
+//"this" refers to the button, not allFriends, because the button was the invoked function  
+```
