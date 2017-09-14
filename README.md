@@ -65,3 +65,23 @@ var allFriends = {
 $(button).click(allFriends.myFriends());
 //"this" refers to the button, not allFriends, because the button was the invoked function  
 ```
+### `that`
+* If an inner method is trying to access an outer function's `this`, then `this` must be saved to a new variable before the inner method is invoked.  This means that a new variable, `that`, points to the properties and methods of the outer object so that the values can be accessed within the closure, otherwise `this` used within a closure returns `undefined`.  
+```JavaScript
+  var games = {
+    game: 'soccer',
+    leagues: [
+      {name: 'EPL'},
+      {name: 'MLS'},
+      {name: 'La Liga'}
+    ],
+    soccerLeagues: function() {
+      var that = this;
+      this.leagues.forEach(function(league){
+        console.log(league.name + " is a professional " + that.game + " league.");
+      })
+    }
+  };
+  games.soccerLeagues();
+  //"this" works only one level into an invoking object, once a closure is invoked "that" must be used to refer to the original invoking object.
+```   
