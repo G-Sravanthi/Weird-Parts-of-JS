@@ -31,4 +31,14 @@
 ### By-Reference
 * A variable that is set equal to a pre-existing object does not cause a copy of that object to be made and saved to memory, instead the variable referencing the object just continually points at the same key/value pairs.  If the object is mutated in any way the newly created variable references those changes because it is still pointed at the original object.  
 ### "this"
-* `this` points to the window when a function is declared on the global level.  `this` points to the object in which it is called if invoked within an object.  `this` makes it easier to grab hold of a property within the object where `this` is called.  If `this` is being called within a method of an object deeper than the 1st level of the object, then `this` refers to the window object, not the object.  In order to effectively use `this` deep within an object, a variable must be declared and set equal to `this`.  That variable now holds a copy of the object, not the global object.    
+* `this` is used to hold the value of a single object.  If `this` is used within a function, then `this` is being used to access the methods or properties of the object that called the function. `this` can only reference the methods and properties within the single object where invoked.   
+```JavaScript
+  var friends = {
+    best: 'George',
+    second: 'Larry',
+    third: 'Sara',
+    myFriends: function() {
+      console.log("These are my friends "this.best + " " + this.second + " " + this.third +".");
+    }
+  }
+```       
