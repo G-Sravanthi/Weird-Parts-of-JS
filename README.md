@@ -83,6 +83,21 @@ $(button).click(allFriends.myFriends());
     }
   };
   games.soccerLeagues();
-  //"this" works only one level into an invoking object, once a closure is invoked, "that"
-  //must be used to refer to the original invoking object.
+  //"this" works only one level into an invoking object, once a closure is invoked,
+  //"that" must be used to refer to the original invoking object.
 ```   
+### Array Literal
+* A collection of numbers, strings, booleans, objects, functions, and other arrays saved to a variable.  Arrays can invoke functions saved within itself, and pass values also saved internally to that same function as a parameter.  
+```JavaScript
+  var array = [
+    {
+      name: "Tony",
+      age: 29
+    },
+    function (name) {
+      var greeting = "Hello ";
+      console.log(greeting + name);
+    }
+  ];
+  array[1](array[0].name);
+```
