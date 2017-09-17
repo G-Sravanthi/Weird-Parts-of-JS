@@ -105,3 +105,20 @@ $(button).click(allFriends.myFriends());
   ];
   array[1](array[0].name);
 ```
+### Immediately Invoked Function Expressions (IIFE)
+* A function expression that is created and immediately passed a parameter value, and executed.  That executed function expression immediately saves a value to a variable.  
+```JavaScript
+  var greeting = function (name) {
+    return 'Hello ' + name + "!";
+  }('Tony');
+  console.log(greeting);
+  //when logged, "greeting" has already been invoked upon //creation, so the function doesn't need to be called with //"greeting()".  The variable "greeting" is no longer equal to a //anonymous function, but now saves a value equal to "Hello //Tony!".  
+```      
+### Immediately Invoked Function Statement (IIFS)
+* An anonymous function can also be used to immediately invoke a value by wrapping the entire function statement in `()`.  This approach is heavily used in modern frameworks to execute code on the fly as the function is created.  This approach places all framework specific code within the same execution context, limiting the possibility for conflicting code because framework specific expression no longer sit on the global execution context.  
+```JavaScript
+(function (j) {
+  var greeting = 'Hello ';
+  console.log(greeting + j + "!");
+}('Tony'));
+```    
