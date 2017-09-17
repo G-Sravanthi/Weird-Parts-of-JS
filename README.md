@@ -1,6 +1,8 @@
 # The Weird Parts of JavaScript
+
 ## JavaScript Engine
-* The JS engine is a Process Virtual Machine (a software-driven emulation of a specific process) that allows for the interpretation and execution of JavaScript code.  The sole purpose of the JS Engine is to read and compile code written by a developer into optimized code that can be interpreted by the browser.  The goal of any JS Engine is to parse through and generate the most optimized code as fast as possible to minimize run-time delay.     
+* The JS engine is a Process Virtual Machine (a software-driven emulation of a specific process) that allows for the interpretation and execution of JavaScript code.  The sole purpose of the JS Engine is to read and compile code written by a developer into optimized code that can be interpreted by the browser.  The goal of any JS Engine is to parse through and generate the most optimized code as fast as possible to minimize run-time delay.
+
 ## Definitions
 ### Object
 * A collection of properties with key/value pairs or methods which are declared functions within the object's collection.  An object can also have a collection that is another object.  
