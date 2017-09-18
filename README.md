@@ -90,6 +90,15 @@ $(button).click(allFriends.myFriends());
   //"this" works only one level into an invoking object, once a closure is invoked,
   //"that" must be used to refer to the original invoking object.
 ```   
+### Argument
+* A value passed into a function through the function's declared parameter(s).  When the function is declared and hoisted in the create phase of the execution context, the JS Engine sets `undefined` values as place holders for the declared parameters of the function.  Parameters are set to `undefined` initially in order to mitigate an error if the function is invoked without all parameters set arguments.  If the function is possibly passed more arguments than parameter placeholders declared, `...` followed by a name all declared after the set function parameters allows for an array to be created.  The name given after the `...` is the name of the array.  That array holds any additional arguments passed to the function that did not have declared parameter placeholders.  The arguments array can be search just like any array with bracket indexing.  
+```JavaScript
+  var names = function (first, last, ...other) {
+    console.log('Hello, my name is ' + first + " "+ last);
+    console.log(other);
+  };
+  names('James', 'Man', 'Jr.', 'Alan');
+```      
 ### Array Literal
 * A collection of numbers, strings, booleans, objects, functions, and other arrays saved to a variable.  Arrays can invoke functions saved within itself, and pass values also saved internally to that same function as a parameter.  
 ```JavaScript
