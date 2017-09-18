@@ -131,3 +131,15 @@ $(button).click(allFriends.myFriends());
   console.log(greeting + j + "!");
 }('Tony'));
 ```    
+### Closure
+* When a function is invoked, that function is added to the execution stack and must be completed before the JS Engine can move onto the next task.  If a function is nested within another function, the outer function is executed and any realized value is then passed to the inner function "enclosed" by the outer function.  A closure represents the act of a nested function accessing parent function parameters that hold pertinent value to execute inner function tasks.  
+```JavaScript
+  function greeting(whatToSay) {
+    return function(name) {
+      console.log(whatToSay + name);
+    }
+  }
+  var sayHi = greeting('Hi ');
+  sayHi('Tony');
+  //"sayHi" effectively is "greeting('Hi ')('Tony')", which means that "Hi " is being passed to "whatToSay", causing "greeting" to be executed, completed, and the result to be saved for the anonymous inner function.  For the inner function "whatToSay" is equal to "Hi " and continues to parse through the code passing "Tony" as the vale for the "name" parameter, resulting in "Hi Tony" 
+```
