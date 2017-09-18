@@ -141,5 +141,11 @@ $(button).click(allFriends.myFriends());
   }
   var sayHi = greeting('Hi ');
   sayHi('Tony');
-  //"sayHi" effectively is "greeting('Hi ')('Tony')", which means //that "Hi " is being passed to "whatToSay", causing "greeting" //to be executed, completed, and the result to be saved for the //anonymous inner function.  For the inner function "whatToSay" //is equal to "Hi " and continues to parse through the code //passing "Tony" as the vale for the "name" parameter, resulting //in "Hi Tony" 
+  //"sayHi" effectively is "greeting('Hi ')('Tony')", which means
+  //that "Hi " is being passed to "whatToSay", causing "greeting"
+  //to be executed, completed, and the result to be saved for the
+  //anonymous inner function.  For the inner function "whatToSay"
+  //is equal to "Hi " and continues to parse through the code
+  //passing "Tony" as the vale for the "name" parameter, resulting
+  //in "Hi Tony" 
 ```
