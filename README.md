@@ -5,9 +5,9 @@
 ## JavaScript Execution Context
 * The environment in which code is executed in regards to the value of `this`, variables, objects, and functions.  
 1. Global Execution Context
-* The initial JS execution context when the file first loads to the browser.  There is only one GEC in which all other Functional Execution Contexts live.  
+   * The initial JS execution context when the file first loads to the browser.  There is only one GEC in which all other Functional Execution Contexts live.  
 2. Functional Execution Context
-* The execution context initiated when a function is invoked.  Each function has its own execution context and has access to any code within the invoked function's lexical scope.
+   * The execution context initiated when a function is invoked.  Each function has its own execution context and has access to any code within the invoked function's lexical scope.
 ## JavaScript Execution Context Stack
 * The JS Engine parses through the code creating an ordered stack of executable code based on the code's context.  The stack always begins with the Global Execution Context, adding Functional Execution Contexts on top of the GEC.  As the JS engine parses through the code and reads a function call, a new FEC is added to the top of the execution stack.  The JS engine executes from the top of the stack down and once a function task is completed it is popped off the top of the stack and the next function is executed.  
 ## KEEP IN MIND
@@ -20,9 +20,9 @@
 * The execution directions of the creation and activation phases explain the reason why hoisting allows for functions to be called before their declaration.       
 ## Execution Context Stages
 1.  Creation Stage
-* The JS engine parses through the code and when a function is parsed a new execution context is created and added to the stack.  When that function's execution context is created a `variable object` and an `argument object` are both created for the individual function.  Within the `variable object`, nested functions are added followed by declared variables.  The hoisted nested functions point to their own execution context, while the variables are hoisted as `undefined`.  At this point the value of `this` is established within the lexical scope of the function.  
+   * The JS engine parses through the code and when a function is parsed a new execution context is created and added to the stack.  When that function's execution context is created a `variable object` and an `argument object` are both created for the individual function.  Within the `variable object`, nested functions are added followed by declared variables.  The hoisted nested functions point to their own execution context, while the variables are hoisted as `undefined`.  At this point the value of `this` is established within the lexical scope of the function.  
 2. Activation Stage
-* The stack runs all nested functions within the execution context and assigns variables their values.
+   * The stack runs all nested functions within the execution context and assigns variables their values.
 ```JavaScript
 ```          
 ## Definitions
