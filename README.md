@@ -20,11 +20,12 @@
 * The execution directions of the creation and activation phases explain the reason why hoisting allows for functions to be called before their declaration.       
 ## Execution Context Stages
 1.  Creation Stage
+
    * The JS engine parses through the code and when a function is parsed a new execution context is created and added to the stack.  When that function's execution context is created a `variable object` and an `argument object` are both created for the individual function.  Within the `variable object`, nested functions are added followed by declared variables.  The hoisted nested functions point to their own execution context, while the variables are hoisted as `undefined`.  At this point the value of `this` is established within the lexical scope of the function.  
 2. Activation Stage
    * The stack runs all nested functions within the execution context and assigns variables their values.
 
-* Example of Creation and Activation Phases 
+* Example of Creation and Activation Phases
 ```JavaScript
  function firstEC(i) {
    //this is the first functional execution context created on the stack
