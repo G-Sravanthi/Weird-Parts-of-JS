@@ -23,7 +23,34 @@
    * The JS engine parses through the code and when a function is parsed a new execution context is created and added to the stack.  When that function's execution context is created a `variable object` and an `argument object` are both created for the individual function.  Within the `variable object`, nested functions are added followed by declared variables.  The hoisted nested functions point to their own execution context, while the variables are hoisted as `undefined`.  At this point the value of `this` is established within the lexical scope of the function.  
 2. Activation Stage
    * The stack runs all nested functions within the execution context and assigns variables their values.
+
+* Example of Creation and Activation Phases 
 ```JavaScript
+ function firstEC(i) {
+   //this is the first functional execution context created on the stack
+   var first = 'first execution context Variable 1';
+   //"undefined" upon creation, and then given value upon activation
+   console.log(first);
+   var second = 'first execution context Variable 2';
+   //"undefined" upon creation, and then given value upon activation
+   console.log(second);
+   var thirdEC = function() {
+     //"undefined" upon creation, and then given value upon activation.  Upon activation, this is function statement for the third execution context
+     console.log('third execution context through function call, and firstEC argument:' + i);
+   };
+   secondEC();
+   //this function call within the creation stage of "firstEC" points to a function creating a second execution context
+   thirdEC();
+   //this function call within the creation stage of "firstEC" points to a function creating a third execution context
+   function secondEC() {
+     //this is function statement for the second execution context  
+     console.log('second execution context through function call, and firstEC argument:' + i);
+   }
+ };
+ console.log('global execution context ');
+ //this is apart of the global execution context
+ firstEC(1);
+ //this function call points to a function creating the first execution context
 ```          
 ## Definitions
 ### Object
