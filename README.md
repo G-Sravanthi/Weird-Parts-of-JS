@@ -2,7 +2,29 @@
 
 ## JavaScript Engine
 * The JS engine is a Process Virtual Machine (a software-driven emulation of a specific process) that allows for the interpretation and execution of JavaScript code.  The sole purpose of the JS Engine is to read and compile code written by a developer into optimized code that can be interpreted by the browser.  The goal of any JS Engine is to parse through and generate the most optimized code as fast as possible to minimize run-time delay.
-
+## JavaScript Execution Context
+* The environment in which code is executed in regards to the value of `this`, variables, objects, and functions.  
+1. Global Execution Context
+* The initial JS execution context when the file first loads to the browser.  There is only one GEC in which all other Functional Execution Contexts live.  
+2. Functional Execution Context
+* The execution context initiated when a function is invoked.  Each function has its own execution context and has access to any code within the invoked function's lexical scope.
+## JavaScript Execution Context Stack
+* The JS Engine parses through the code creating an ordered stack of executable code based on the code's context.  The stack always begins with the Global Execution Context, adding Functional Execution Contexts on top of the GEC.  As the JS engine parses through the code and reads a function call, a new FEC is added to the top of the execution stack.  The JS engine executes from the top of the stack down and once a function task is completed it is popped off the top of the stack and the next function is executed.  
+## KEEP IN MIND
+* The stack is single threaded, synchronously executable, meaning that a single function can be created and activated at one time.  
+* Their are two phases within an Execution Context; Creation and Activation.  
+* The Creation Stage begins with the outer most context, the global context, and works towards the inner most nested functions.  
+* Like discussed earlier the global context sits at the bottom of the stack and each preceding execution context is added on top of the last.  
+* Once each context is created the activation phases pops functions off the top os the stack once their task is complete.  
+* The creation phase runs bottom to top, and the activation phase runs top to bottom.
+* The execution directions of the creation and activation phases explain the reason why hoisting allows for functions to be called before their declaration.       
+## Execution Context Stages
+1.  Creation Stage
+* The JS engine parses through the code and when a function is parsed a new execution context is created and added to the stack.  When that function's execution context is created a `variable object` and an `argument object` are both created for the individual function.  Within the `variable object`, nested functions are added followed by declared variables.  The hoisted nested functions point to their own execution context, while the variables are hoisted as `undefined`.  At this point the value of `this` is established within the lexical scope of the function.  
+2. Activation Stage
+* The stack runs all nested functions within the execution context and assigns variables their values.
+```JavaScript
+```          
 ## Definitions
 ### Object
 * A collection of properties with key/value pairs or methods which are declared functions within the object's collection.  An object can also have a collection that is another object.  
@@ -146,6 +168,6 @@ $(button).click(allFriends.myFriends());
   //to be executed, completed, and the result to be saved for the
   //anonymous inner function.  For the inner function "whatToSay"
   //is equal to "Hi " and continues to parse through the code
-  //passing "Tony" as the vale for the "name" parameter, resulting
-  //in "Hi Tony" 
+  //passing "Tony" as the value for the "name" parameter, resulting
+  //in "Hi Tony"
 ```
