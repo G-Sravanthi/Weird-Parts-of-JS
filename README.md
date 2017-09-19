@@ -20,7 +20,6 @@
 * The execution directions of the creation and activation phases explain the reason why hoisting allows for functions to be called before their declaration.       
 ## Execution Context Stages
 1.  Creation Stage
-
    * The JS engine parses through the code and when a function is parsed a new execution context is created and added to the stack.  When that function's execution context is created a `variable object` and an `argument object` are both created for the individual function.  Within the `variable object`, nested functions are added followed by declared variables.  The hoisted nested functions point to their own execution context, while the variables are hoisted as `undefined`.  At this point the value of `this` is established within the lexical scope of the function.  
 2. Activation Stage
    * The stack runs all nested functions within the execution context and assigns variables their values.
@@ -54,6 +53,8 @@
  //this function call points to a function creating the first execution context
 ```          
 ## Definitions
+### Lexical Scope
+* Inner functions contain the scope of their parent function, meaning that the child function has access to the values held within its parent function, even if if the parent function has returned (this is all based on the position of declared code with an execution context).  
 ### Object
 * A collection of properties with key/value pairs or methods which are declared functions within the object's collection.  An object can also have a collection that is another object.  
 ### Object Literal
