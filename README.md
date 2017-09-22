@@ -9,7 +9,7 @@
 2. Functional Execution Context
    * The execution context initiated when a function is invoked.  Each function has its own execution context and has access to any code within the invoked function's lexical scope.
 ## JavaScript Execution Context Stack
-* The JS Engine parses through the code creating an ordered stack of executable code based on the code's context.  The stack always begins with the Global Execution Context, adding Functional Execution Contexts on top of the GEC.  As the JS engine parses through the code and reads a function call, a new FEC is added to the top of the execution stack.  The JS engine executes from the top of the stack down and once a function task is completed it is popped off the top of the stack and the next function is executed.  
+* The JS Engine parses through the code creating an ordered stack, or queue, that keeps track of executable code based on the code's context (where in the application a function was invoked).  The stack always begins with the Global Execution Context, adding Functional Execution Contexts on top of the GEC.  As the JS engine parses through the code and reads a function call, a new FEC is added to the top of the execution stack.  A nested function creates a new FEC on top of their parent's FEC within the stack. The JS engine executes from the top of the stack down and once a function task is completed it is popped off the top of the stack and the next function is executed.  
 ## KEEP IN MIND
 * The stack is single threaded, synchronously executable, meaning that a single function can be created and activated at one time.  
 * Their are two phases within an Execution Context; Creation and Activation.  
@@ -92,6 +92,22 @@
     console.log('hello!');
   };
   greet();
+```
+### Function Invocation
+* Running a function, or calling a function, which causes a new execution context to be created and executed.
+### Scope Chain
+* The execution process that looks to the execution stack, the scope of variables, and the scope of functions to correctly assign values based on lexical scope.  This means that a function looks for value within its lexical scope, and if nothing is found the function looks down the chain at its parent's lexical scope for the value.  Scopes are chained together based on relationship, allowing children access to outer value. If variables, at different levels of the code, have identical declarations with different values, functions look to evaluate based on the defined value of the variable closest in scope.
+```JavaScript
+  function a() {
+    function b() {
+      console.log(variableOne);
+    }
+    var variableOne = 2;
+    b ();
+  }
+  var variableOne = 1;
+  a();
+  //"2" is the output of function "a" because function "b" evaluates "variableOne" at the same scoped level that it is invoked. Function "b" completes its code and pops off the execution stack before it reaches the outer "variableOne" equal to "1".
 ```
 ### By-Value
 * When a variable is declared and defined, that variable is saved to memory pointing to the defined value.  If a separate variable is declared and set equal to the initial variable, then a copy of the initial variable is created and the second variable points at the copied value.  If the initial variables value is redefined, the second variable's value does not change because it is still pointing at the copy of the original value.  
