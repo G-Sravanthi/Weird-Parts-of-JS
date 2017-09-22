@@ -1,7 +1,7 @@
 # The Weird Parts of JavaScript
 
 ## JavaScript Engine
-* The JS engine is a Process Virtual Machine (a software-driven emulation of a specific process) that allows for the interpretation and execution of JavaScript code.  The sole purpose of the JS Engine is to read and compile code written by a developer into optimized code that can be interpreted by the browser.  The goal of any JS Engine is to parse through and generate the most optimized code as fast as possible to minimize run-time delay.
+* The JS engine is a Process Virtual Machine (a software-driven emulation of a specific process) that allows for the interpretation and execution of JavaScript code.  It acts as a global wrapper that places all of an application's JS code within a global execution context. The sole purpose of the JS Engine is to read and compile code written by a developer into optimized code that can be interpreted by the browser.  The goal of any JS Engine is to parse through and generate the most optimized code as fast as possible to minimize run-time delay.
 ## JavaScript Execution Context
 * The environment in which code is executed in regards to the value of `this`, variables, objects, and functions.  
 1. Global Execution Context
@@ -18,11 +18,11 @@
 * Once each context is created the activation phases pops functions off the top os the stack once their task is complete.  
 * The creation phase runs bottom to top, and the activation phase runs top to bottom.
 * The execution directions of the creation and activation phases explain the reason why hoisting allows for functions to be called before their declaration.       
-## Execution Context Stages
-1.  Creation Stage
-   * The JS engine parses through the code and when a function is parsed a new execution context is created and added to the stack.  When that function's execution context is created a `variable object` and an `argument object` are both created for the individual function.  Within the `variable object`, nested functions are added followed by declared variables.  The hoisted nested functions point to their own execution context, while the variables are hoisted as `undefined`.  At this point the value of `this` is established within the lexical scope of the function.  
-2. Activation Stage
-   * The stack runs all nested functions within the execution context and assigns variables their values.
+## Execution Context Phases
+1.  Creation Phase
+   * The JS engine parses through the code and when a function is parsed a new execution context is created and added to the stack.  When that function's execution context is created a `variable object` and an `argument object` are both created for the individual function.  Within the `variable object`, nested functions are added followed by declared variables.  The hoisted nested functions point to their own execution context, while the variables are hoisted as `undefined`.  At this point the value of `this` is established within the lexical scope of the function.  The creation phase is used by the JS Engine to establish context within the code, as well as, create memory to store variables and functions necessary for the execution phase.    
+2. Activation Phase
+   * Code is read line by line executing the code in the order it is read.  The stack runs all nested functions within the execution context and assigns variables their values.
 
 * Example of Creation and Activation Phases
 ```JavaScript
@@ -53,16 +53,28 @@
  //this function call points to a function creating the first execution context
 ```          
 ## Definitions
+### Syntax Parser
+* Software that reads through code and determines what is to be done.  A syntax parser allows code to be written in script that is more easily written and read by humans, then translated into a lower level computer language to be run.
+### Lexical Environment
+* The location of each segment of code within the context of the entire application.   
 ### Lexical Scope
-* Inner functions contain the scope of their parent function, meaning that the child function has access to the values held within its parent function, even if if the parent function has returned (this is all based on the position of declared code with an execution context).  
+* The context of a piece of code called to run.  Inner functions contain the scope of their parent function, meaning that the child function has access to the values held within its parent function, even if the parent function was returned (this is all based on the position of declared code with an execution context).
+### Execution Context
+* A wrapper that contains the code that is running, in order to manage the lexical environment and the scope of the executable code.
+### `undefined`
+* A special value within JS given to variables that have been declared, but has yet to be defined.  `undefined` is not a string, but instead a unique special value that acts as a place holder in memory for a future value.   
+### Name / Value Pair (Key/Value)
+* A name that maps to a unique value.  The name may be defined more than once, but can only have one value in any given execution context.  That value can be defined to hold further sets of name / value pairs
 ### Object
-* A collection of properties with key/value pairs or methods which are declared functions within the object's collection.  An object can also have a collection that is another object.  
+* A collection of properties with name / value pairs or methods which are declared functions within the object's collection.  An object can also have a collection that is another object.    
 ### Object Literal
 * When the JS Engine is parsing through your code and comes upon `{}` outside of a function or conditional, the JS Engine assumes that a new object is being created.  Object literal syntax allows the programmer to create an object on the fly with `{}` whenever wanted.  
 ### Namespace
 * A container for variables and functions to be held so that separate variables and functions, possibly with the same name, do not cause conflict when called.  JS doesn't have a specialty namespace syntax, but objects can be used to accomplish this task.  
 ### JSON (JavaScript Object Notation)  
 * A string of data that is almost identical to object literal syntax except all property names have to be wrapped in quotes.  JSON is a subset of object literal syntax, meaning that all object literal cannot be used as JSON, but all JSON can be used as object literal.  
+### Hoisting
+* The JS Engine hoists important values to the top of the script when code is run.  Upon execution, the parser identifies variables and functions, creating memory for those values at the top of the compiled code.  This hoisting happens in two steps during the execution context.  In the creation phase of the execution context, all variables are hoisted pointing to `undefined` as the value, where as functions are hoisted pointing to the function code. In the execution phase all variables are defined and code is executed.         
 ### First Class Functions
 * Functions act differently in the JS Engine compared to other languages, because everything you can do with other types (string, number, boolean, etc.) you can do with functions.  Functions can be assigned to variables, passed around, and created on the fly.  Functions are objects in JS.  It is a special type of object with 2 special properties that regular objects do not have.  The name property, that is optional, and the code property that holds the code to be preformed when the function is invoked.  
 ### Function Expression
