@@ -107,7 +107,11 @@
   }
   var variableOne = 1;
   a();
-  //"2" is the output of function "a" because function "b" evaluates "variableOne" at the same scoped level that it is invoked. Function "b" completes its code and pops off the execution stack before it reaches the outer "variableOne" equal to "1".
+  //"2" is the output of function "a" because function "b"
+  //evaluates "variableOne" at the same scoped level that
+  //it is invoked. Function "b" completes its code and pops
+  //off the execution stack before it reaches the outer
+  //"variableOne" equal to "1".
 ```
 ### By-Value
 * When a variable is declared and defined, that variable is saved to memory pointing to the defined value.  If a separate variable is declared and set equal to the initial variable, then a copy of the initial variable is created and the second variable points at the copied value.  If the initial variables value is redefined, the second variable's value does not change because it is still pointing at the copy of the original value.  
