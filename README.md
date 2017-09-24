@@ -51,7 +51,9 @@
  //this is apart of the global execution context
  firstEC(1);
  //this function call points to a function creating the first execution context
-```          
+```   
+##Event Queue
+* The stack for managing events triggered by handlers.  Once the execution stack has completed the creation and execution phases , the application runs the event Queue asynchronously, meaning that when an event is called, it is added to the stack awaiting processing power, and once processed, the event is fulfilled (dropdown menu), or waits a response (http request).  If an event is not immediately completed due to outside sources(API), the application continues to process until the necessary response is returned.  These events are used to manipulate the DOM, or manage HTTP requests and responses.    Events run when they are called and there is data to be processed, not based on the sequential order of the written code.               
 ## Definitions
 ### Syntax Parser
 * Software that reads through code and determines what is to be done.  A syntax parser allows code to be written in script that is more easily written and read by humans, then translated into a lower level computer language to be run.
@@ -74,7 +76,11 @@
 ### JSON (JavaScript Object Notation)  
 * A string of data that is almost identical to object literal syntax except all property names have to be wrapped in quotes.  JSON is a subset of object literal syntax, meaning that all object literal cannot be used as JSON, but all JSON can be used as object literal.  
 ### Hoisting
-* The JS Engine hoists important values to the top of the script when code is run.  Upon execution, the parser identifies variables and functions, creating memory for those values at the top of the compiled code.  This hoisting happens in two steps during the execution context.  In the creation phase of the execution context, all variables are hoisted pointing to `undefined` as the value, where as functions are hoisted pointing to the function code. In the execution phase all variables are defined and code is executed.         
+* The JS Engine hoists important values to the top of the script when code is run.  Upon execution, the parser identifies variables and functions, creating memory for those values at the top of the compiled code.  This hoisting happens in two steps during the execution context.  In the creation phase of the execution context, all variables are hoisted pointing to `undefined` as the value, where as functions are hoisted pointing to the function code. In the execution phase all variables are defined and code is executed.
+### Synchronous
+* Code is read and executed in the order that is parsed.  The JS Engine runs synchronously through code.     
+### Asynchronous
+* Code that does not run in a particular order, but instead is executed to completion based on a trigger event.  The browser run asynchronously through events as they are added to the even queue passed by the JS Engine.           
 ### First Class Functions
 * Functions act differently in the JS Engine compared to other languages, because everything you can do with other types (string, number, boolean, etc.) you can do with functions.  Functions can be assigned to variables, passed around, and created on the fly.  Functions are objects in JS.  It is a special type of object with 2 special properties that regular objects do not have.  The name property, that is optional, and the code property that holds the code to be preformed when the function is invoked.  
 ### Function Expression
