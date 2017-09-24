@@ -2,6 +2,8 @@
 
 ## JavaScript Engine
 * The JS engine is a Process Virtual Machine (a software-driven emulation of a specific process) that allows for the interpretation and execution of JavaScript code.  It acts as a global wrapper that places all of an application's JS code within a global execution context. The sole purpose of the JS Engine is to read and compile code written by a developer into optimized code that can be interpreted by the browser.  The goal of any JS Engine is to parse through and generate the most optimized code as fast as possible to minimize run-time delay.
+
+
 ## JavaScript Execution Context
 * The environment in which code is executed in regards to the value of `this`, variables, objects, and functions.  
 1. Global Execution Context
@@ -52,37 +54,71 @@
  firstEC(1);
  //this function call points to a function creating the first execution context
 ```   
+
+
 ## Event Queue
-* The stack for managing events triggered by handlers.  Once the execution stack has completed the creation and execution phases , the application runs the event Queue asynchronously, meaning that when an event is called, it is added to the stack awaiting processing power, and once processed, the event is fulfilled (dropdown menu), or waits a response (http request).  If an event is not immediately completed due to outside sources(API), the application continues to process until the necessary response is returned.  These events are used to manipulate the DOM, or manage HTTP requests and responses.    Events run when they are called and there is data to be processed, not based on the sequential order of the written code.               
+* The stack for managing events triggered by handlers.  Once the execution stack has completed the creation and execution phases , the application runs the event Queue asynchronously, meaning that when an event is called, it is added to the stack awaiting processing power, and once processed, the event is fulfilled (dropdown menu), or waits a response (http request).  If an event is not immediately completed due to outside sources(API), the application continues to process until the necessary response is returned.  These events are used to manipulate the DOM, or manage HTTP requests and responses.    Events run when they are called and there is data to be processed, not based on the sequential order of the written code.      
+
+
 # Important Definitions
+
+
 ### Syntax Parser
 * Software that reads through code and determines what is to be done.  A syntax parser allows code to be written in script that is more easily written and read by humans, then translated into a lower level computer language to be run.
+
+
 ### Lexical Environment
 * The location of each segment of code within the context of the entire application.   
+
+
 ### Lexical Scope
 * The context of a piece of code called to run.  Inner functions contain the scope of their parent function, meaning that the child function has access to the values held within its parent function, even if the parent function was returned (this is all based on the position of declared code with an execution context).
+
+
 ### Execution Context
 * A wrapper that contains the code that is running, in order to manage the lexical environment and the scope of the executable code.
+
+
 ### `undefined`
 * A special value within JS given to variables that have been declared, but has yet to be defined.  `undefined` is not a string, but instead a unique special value that acts as a place holder in memory for a future value.   
+
+
 ### Name / Value Pair (Key/Value)
 * A name that maps to a unique value.  The name may be defined more than once, but can only have one value in any given execution context.  That value can be defined to hold further sets of name / value pairs
+
+
 ### Object
 * A collection of properties with name / value pairs or methods which are declared functions within the object's collection.  An object can also have a collection that is another object.    
+
+
 ### Object Literal
-* When the JS Engine is parsing through your code and comes upon `{}` outside of a function or conditional, the JS Engine assumes that a new object is being created.  Object literal syntax allows the programmer to create an object on the fly with `{}` whenever wanted.  
+* When the JS Engine is parsing through your code and comes upon `{}` outside of a function or conditional, the JS Engine assumes that a new object is being created.  Object literal syntax allows the programmer to create an object on the fly with `{}` whenever wanted.
+
+
 ### Namespace
-* A container for variables and functions to be held so that separate variables and functions, possibly with the same name, do not cause conflict when called.  JS doesn't have a specialty namespace syntax, but objects can be used to accomplish this task.  
+* A container for variables and functions to be held so that separate variables and functions, possibly with the same name, do not cause conflict when called.  JS doesn't have a specialty namespace syntax, but objects can be used to accomplish this task.
+
+
 ### JSON (JavaScript Object Notation)  
 * A string of data that is almost identical to object literal syntax except all property names have to be wrapped in quotes.  JSON is a subset of object literal syntax, meaning that all object literal cannot be used as JSON, but all JSON can be used as object literal.  
+
+
 ### Hoisting
 * The JS Engine hoists important values to the top of the script when code is run.  Upon execution, the parser identifies variables and functions, creating memory for those values at the top of the compiled code.  This hoisting happens in two steps during the execution context.  In the creation phase of the execution context, all variables are hoisted pointing to `undefined` as the value, where as functions are hoisted pointing to the function code. In the execution phase all variables are defined and code is executed.
+
+
 ### Synchronous
-* Code is read and executed in the order that is parsed.  The JS Engine runs synchronously through code.     
+* Code is read and executed in the order that is parsed.  The JS Engine runs synchronously through code.
+
+
 ### Asynchronous
-* Code that does not run in a particular order, but instead is executed to completion based on a trigger event.  The browser run asynchronously through events as they are added to the even queue passed by the JS Engine.           
+* Code that does not run in a particular order, but instead is executed to completion based on a trigger event.  The browser run asynchronously through events as they are added to the even queue passed by the JS Engine.
+
+
 ### First Class Functions
-* Functions act differently in the JS Engine compared to other languages, because everything you can do with other types (string, number, boolean, etc.) you can do with functions.  Functions can be assigned to variables, passed around, and created on the fly.  Functions are objects in JS.  It is a special type of object with 2 special properties that regular objects do not have.  The name property, that is optional, and the code property that holds the code to be preformed when the function is invoked.  
+* Functions act differently in the JS Engine compared to other languages, because everything you can do with other types (string, number, boolean, etc.) you can do with functions.  Functions can be assigned to variables, passed around, and created on the fly.  Functions are objects in JS.  It is a special type of object with 2 special properties that regular objects do not have.  The name property, that is optional, and the code property that holds the code to be preformed when the function is invoked.
+
+
 ### Function Expression
 * A variable that holds an anonymous function.  A function expression cannot be invoked before it is declared because the variable is hoisted as `undefined`.
 ```JavaScript
@@ -91,6 +127,8 @@
   };
   greeting();
 ```    
+
+
 ### Function Statement
 * A function with a declared name.  A function statement is hoisted with invokable code, allowing the function to be called before it is declared within the code resulting in a value other than `undefined`.
 ```JavaScript
@@ -99,8 +137,12 @@
   };
   greet();
 ```
+
+
 ### Function Invocation
 * Running a function, or calling a function, which causes a new execution context to be created and executed.
+
+
 ### Scope Chain
 * The execution process that looks to the execution stack, the scope of variables, and the scope of functions to correctly assign values based on lexical scope.  This means that a function looks for value within its lexical scope, and if nothing is found the function looks down the chain at its parent's lexical scope for the value.  Scopes are chained together based on relationship, allowing children access to outer value. If variables, at different levels of the code, have identical declarations with different values, functions look to evaluate based on the defined value of the variable closest in scope.
 ```JavaScript
@@ -119,10 +161,16 @@
   //off the execution stack before it reaches the outer
   //"variableOne" equal to "1".
 ```
+
+
 ### By-Value
 * When a variable is declared and defined, that variable is saved to memory pointing to the defined value.  If a separate variable is declared and set equal to the initial variable, then a copy of the initial variable is created and the second variable points at the copied value.  If the initial variables value is redefined, the second variable's value does not change because it is still pointing at the copy of the original value.  
+
+
 ### By-Reference
 * A variable that is set equal to a pre-existing object does not cause a copy of that object to be made and saved to memory, instead the variable referencing the object just continually points at the same key/value pairs.  If the object is mutated in any way the newly created variable references those changes because it is still pointed at the original object.  
+
+
 ### `this`
 * Basic `this`
 
@@ -139,6 +187,8 @@
   };
   friends.myFriends();
 ```       
+
+
 * Callbacks and `this`
 
    When an object's method is passed to a separate object as a callback, for instance on a click event, if `this` is used to reference a property within the object method being passed, no longer does `this` refer to the correct property.  If `this` is used within a method for a callback function, then `this` now refers the the properties of the invoking function, for instance the button click.
@@ -158,6 +208,8 @@ var allFriends = {
 $(button).click(allFriends.myFriends());
 //"this" refers to the button, not allFriends, because the button was the invoked function  
 ```
+
+
 ### `that`
 * If an inner method is trying to access an outer function's `this`, then `this` must be saved to a new variable before the inner method is invoked.  This means that a new variable, `that`, points to the properties and methods of the outer object so that the values can be accessed within the closure, otherwise, using `this` within a closure returns `undefined`.  
 ```JavaScript
@@ -179,6 +231,8 @@ $(button).click(allFriends.myFriends());
   //"this" works only one level into an invoking object, once a closure is invoked,
   //"that" must be used to refer to the original invoking object.
 ```   
+
+
 ### Argument
 * A value passed into a function through the function's declared parameter(s).  When the function is declared and hoisted in the create phase of the execution context, the JS Engine sets `undefined` values as place holders for the declared parameters of the function.  Parameters are set to `undefined` initially in order to mitigate an error if the function is invoked without all parameters set arguments.  If the function is possibly passed more arguments than parameter placeholders declared, `...` followed by a name all declared after the set function parameters allows for an array to be created.  The name given after the `...` is the name of the array.  That array holds any additional arguments passed to the function that did not have declared parameter placeholders.  The arguments array can be search just like any array with bracket indexing.  
 ```JavaScript
@@ -187,7 +241,9 @@ $(button).click(allFriends.myFriends());
     console.log(other);
   };
   names('James', 'Man', 'Jr.', 'Alan');
-```      
+```   
+
+
 ### Array Literal
 * A collection of numbers, strings, booleans, objects, functions, and other arrays saved to a variable.  Arrays can invoke functions saved within itself, and pass values also saved internally to that same function as a parameter.  
 ```JavaScript
@@ -203,6 +259,8 @@ $(button).click(allFriends.myFriends());
   ];
   array[1](array[0].name);
 ```
+
+
 ### Immediately Invoked Function Expressions (IIFE)
 * A function expression that is created and immediately passed a parameter value, and executed.  That executed function expression immediately saves a value to a variable.  
 ```JavaScript
@@ -212,6 +270,8 @@ $(button).click(allFriends.myFriends());
   console.log(greeting);
   //when logged, "greeting" has already been invoked upon //creation, so the function doesn't need to be called with //"greeting()".  The variable "greeting" is no longer equal to a //anonymous function, but now saves a value equal to "Hello //Tony!".  
 ```      
+
+
 ### Immediately Invoked Function Statement (IIFS)
 * An anonymous function can also be used to immediately invoke a value by wrapping the entire function statement in `()`.  This approach is heavily used in modern frameworks to execute code on the fly as the function is created.  This approach places all framework specific code within the same execution context, limiting the possibility for conflicting code because framework specific expression no longer sit on the global execution context.  
 ```JavaScript
@@ -219,7 +279,9 @@ $(button).click(allFriends.myFriends());
   var greeting = 'Hello ';
   console.log(greeting + j + "!");
 }('Tony'));
-```    
+```  
+
+
 ### Closure
 * When a function is invoked, that function is added to the execution stack and must be completed before the JS Engine can move onto the next task.  If a function is nested within another function, the outer function is executed and any realized value is then passed to the inner function "enclosed" by the outer function.  A closure represents the act of a nested function accessing parent function parameters that hold pertinent value to execute inner function tasks.  
 ```JavaScript
@@ -238,3 +300,5 @@ $(button).click(allFriends.myFriends());
   //passing "Tony" as the value for the "name" parameter, resulting
   //in "Hi Tony"
 ```
+
+### Function Factory 
