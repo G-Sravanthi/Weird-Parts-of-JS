@@ -87,16 +87,15 @@
 * A name that maps to a unique value.  The name may be defined more than once, but can only have one value in any given execution context.  That value can be defined to hold further sets of name / value pairs
 
 
-### Object
-* A collection of properties with name / value pairs or methods which are declared functions within the object's collection.  An object can also have a collection that is another object.    
-
-
-### Object Literal
-* When the JS Engine is parsing through your code and comes upon `{}` outside of a function or conditional, the JS Engine assumes that a new object is being created.  Object literal syntax allows the programmer to create an object on the fly with `{}` whenever wanted.
-
-
 ### Namespace
 * A container for variables and functions to be held so that separate variables and functions, possibly with the same name, do not cause conflict when called.  JS doesn't have a specialty namespace syntax, but objects can be used to accomplish this task.
+
+### By-Value
+* When a variable is declared and defined, that variable is saved to memory pointing to the defined value.  If a separate variable is declared and set equal to the initial variable, then a copy of the initial variable is created and the second variable points at the copied value.  If the initial variables value is redefined, the second variable's value does not change because it is still pointing at the copy of the original value.  
+
+
+### By-Reference
+* A variable that is set equal to a pre-existing object does not cause a copy of that object to be made and saved to memory, instead the variable referencing the object just continually points at the same key/value pairs.  If the object is mutated in any way the newly created variable references those changes because it is still pointed at the original object.
 
 
 ### JSON (JavaScript Object Notation)  
@@ -114,6 +113,39 @@
 ### Asynchronous
 * Code that does not run in a particular order, but instead is executed to completion based on a trigger event.  The browser run asynchronously through events as they are added to the even queue passed by the JS Engine.
 
+## Object
+* A collection of properties with name / value pairs or methods which are declared functions within the object's collection.  An object can also have a collection that is another object.    
+
+
+### Object Literal
+* When the JS Engine is parsing through your code and comes upon `{}` outside of a function or conditional, the JS Engine assumes that a new object is being created.  Object literal syntax allows the programmer to create an object on the fly with `{}` whenever wanted.
+
+## Function
+* A set procedure to perform a task or to calculate a value.
+* All functions have 3 methods that are apart of the function object upon the creation of a function.  All 3 use the special keyword `this`, along with the arguments passed to the function.  
+1. `bind()`: A method of the function object which can be attached to a function expression, creating a copy of the bound function
+   expression.  Bind sets up a new copy of the said function, and is passed a parameter that alters what the JS Engine uses as the keyword `this`.  Whatever object is passed to the `bind` method is used by the JS Engine as `this`.  Bind copies without executing.
+   ```JavaScript
+      var person = {
+        firstname: 'John',
+        lastname: 'Doe',
+        getFullName: function () {
+          var fullName = this.firstname + ' ' + this.lastname;
+          return fullName;
+        }
+        //"person" is an object with 2 string properties and one method.  
+        //That method uses both object string properties in order to return a value.
+      };
+      var logName = function () {
+        console.log('Name: ' + this.getFullName());
+      }.bind(person);
+      //the "person" object is bound to the "logName" function in order to
+      //correctly use "this" when the function is invoked.
+      logName();
+      //invoking the function that is preloaded to execute based on the
+      //"person" object properties and methods.
+   ```  
+2. `call()`:  
 
 ### First Class Functions
 * Functions act differently in the JS Engine compared to other languages, because everything you can do with other types (string, number, boolean, etc.) you can do with functions.  Functions can be assigned to variables, passed around, and created on the fly.  Functions are objects in JS.  It is a special type of object with 2 special properties that regular objects do not have.  The name property, that is optional, and the code property that holds the code to be preformed when the function is invoked.
@@ -161,14 +193,6 @@
   //off the execution stack before it reaches the outer
   //"variableOne" equal to "1".
 ```
-
-
-### By-Value
-* When a variable is declared and defined, that variable is saved to memory pointing to the defined value.  If a separate variable is declared and set equal to the initial variable, then a copy of the initial variable is created and the second variable points at the copied value.  If the initial variables value is redefined, the second variable's value does not change because it is still pointing at the copy of the original value.  
-
-
-### By-Reference
-* A variable that is set equal to a pre-existing object does not cause a copy of that object to be made and saved to memory, instead the variable referencing the object just continually points at the same key/value pairs.  If the object is mutated in any way the newly created variable references those changes because it is still pointed at the original object.  
 
 
 ### `this`
@@ -329,7 +353,6 @@ $(button).click(allFriends.myFriends());
 ```JavaScript
   var data = [];
   //empty array for data storage
-
   function logInfo(userData) {
     if (userData === 'string') {
       console.log(userData);
@@ -337,7 +360,7 @@ $(button).click(allFriends.myFriends());
     }
     else if (userData === 'object') {
       for( var user in userData) {
-        console.log(user + ":" + userData);
+        console.log(user + ":" + userData[user]);
         //if the argument passed is an object loop through the object
         //and log each key/ value pair as "key: value"  
       }
