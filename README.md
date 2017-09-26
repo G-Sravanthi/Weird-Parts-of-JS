@@ -301,4 +301,24 @@ $(button).click(allFriends.myFriends());
   //in "Hi Tony"
 ```
 
-### Function Factory 
+### Function Factory
+* A special type of closure that has multiple use cases internally declared.  The action of the closure is dependent on the parameters passed to the closure by a declared variable.
+```JavaScript
+  function makeGreeting(language) {
+    return function (firstName, lastName) {
+      if (language === 'en') {
+        console.log('Hello ' + firstName + ' ' + lastName);
+      }
+      if (language === 'es'){
+        console.log('Hola ' + firstName + ' ' + lastName);
+      }
+    }
+  }
+
+  var english = makeGreeting('en');
+  var spanish = makeGreeting('es');
+
+  english('Tony', 'Gibbs');
+  spanish('Jose', 'Gonzalez');
+```    
+* The initial global execution context holds `english` and `spanish` variables, as well as the the function-factory/closure of `makeGreeting`.  When either `english` or `spanish` are invoked with `firstName` and `lastName` arguments, a new function execution context is created.  `makeGreeting` is then called with a set language argument, returning an anonymous function that holds in memory the argument that it was passed, either `en` or `es`.  The anonymous function is then passed the name values from the initially invoked function, either `english` or `spanish`, giving the anonymous function a `language`, `firstName`, and `lastName` value in order to complete its execution context and log an output.   
