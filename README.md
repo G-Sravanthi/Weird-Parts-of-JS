@@ -321,4 +321,36 @@ $(button).click(allFriends.myFriends());
   english('Tony', 'Gibbs');
   spanish('Jose', 'Gonzalez');
 ```    
-* The initial global execution context holds `english` and `spanish` variables, as well as the the function-factory/closure of `makeGreeting`.  When either `english` or `spanish` are invoked with `firstName` and `lastName` arguments, a new function execution context is created.  `makeGreeting` is then called with a set language argument, returning an anonymous function that holds in memory the argument that it was passed, either `en` or `es`.  The anonymous function is then passed the name values from the initially invoked function, either `english` or `spanish`, giving the anonymous function a `language`, `firstName`, and `lastName` value in order to complete its execution context and log an output.   
+* The initial global execution context holds `english` and `spanish` variables, as well as the the function-factory/closure of `makeGreeting`.  When either `english` or `spanish` are invoked with `firstName` and `lastName` arguments, a new function execution context is created.  `makeGreeting` is then called with a set `language` argument, returning an anonymous function that holds in memory the argument that it was passed, either `en` or `es`.  The anonymous function is then passed the name values from the initially invoked function, either `english` or `spanish`, giving the anonymous function a `language`, `firstName`, and `lastName` value in order to complete its execution context and log an output.   
+
+
+### Callback Function
+* A function that is passed into another function as an argument to complete an action.  The function that is being passed is not to be executed at that point, only the the definition of the function is being passed.  The initially invoked function calls back to the function definition that has been passed as an argument when the initial function's execution context is complete, passing a value along to the callback function.  The callback is executed within the initially invoked function making a callback a type of closure.  JavaScript is not inherently asynchronous, callbacks allow actions to work asynchronously based on certain conditions being met.      
+```JavaScript
+  var data = [];
+  //empty array for data storage
+
+  function logInfo(userData) {
+    if (userData === 'string') {
+      console.log(userData);
+      //if the argument passed is a string then just log string
+    }
+    else if (userData === 'object') {
+      for( var user in userData) {
+        console.log(user + ":" + userData);
+        //if the argument passed is an object loop through the object
+        //and log each key/ value pair as "key: value"  
+      }
+    }
+  };
+  function structureData(options, callback) {
+    data.push(options);
+    //pushes the data to the "data" array
+    callback(options);
+    //invokes the callback function that was passed as an argument.  That callback
+    //function is passed the arguments that were passed to "structureData" function.  
+  };
+  structureData({nickName:"Joe-Joe", age:"43"}, logInfo);
+  //"structureData" is being passed an object and the callback function "logInfo"
+  //used to process that data
+```
