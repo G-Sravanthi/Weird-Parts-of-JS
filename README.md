@@ -61,10 +61,33 @@
 
 
 # Important Definitions
+### Primitive Types
+* A type of data that represents only a single value
+#### Undefined
+* A placeholder that is saved to memory but has no assigned value.  Declared but not defined.
+#### Null
+* A value that represents the absence of existence. Similar to `undefined` but `null` is both declared and defined. `null` is an object.  
+#### Boolean
+* A value that only represents either true (1) or false (0).
+#### Number
+* A value that is an integer (always a float not a single digit).
+#### String
+* A value that is a single character or a sequence of characters designated with beginning and ending quotes.
+#### Symbol
+* A unique property key.    
 
+### Operator
+* Special symbols with predefined functionality that perform operations on values that they are placed between.
+```JavaScript
+  var one = 1;
+  var two = 2;
+  var three = 3;
+  var answer = one + two + three
+  //`+` preforms the addition operation on variable one, two and three 
+```
 
 ### Syntax Parser
-* Software that reads through code and determines what is to be done.  A syntax parser allows code to be written in script that is more easily written and read by humans, then translated into a lower level computer language to be run.
+* A program that reads higher level code and determines if the syntax is executable and if so, its functionality.  Scripting languages are human readable and must be parsed over to be compiled or interpreted into computer language.     
 
 
 ### Lexical Environment
